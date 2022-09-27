@@ -5,6 +5,9 @@ function fcnSumarLento( numero ){
     });
     return promesa; */
     return new Promise(function(resolve, reject){
+       /* if(numero >= 5){
+            reject('Sumar Lento Fallo');
+        }*/
         setTimeout(function(){
             resolve( numero + 1 );
             }, 800);
@@ -23,6 +26,7 @@ let fcnSumarRapido = (numero)=>{
     });
 }
 
+/*
 //FIC: llamado normal de la funcion sumar lento y su promesa.
 fcnSumarLento(5)
 .then(respuesta=>{
@@ -32,4 +36,14 @@ fcnSumarLento(5)
 fcnSumarRapido(10)
 .then(respuesta=>{
     console.log('Respuesta Rapida:', respuesta);
+}); */
+let arregloVarios = [fcnSumarLento(5), fcnSumarRapido(10), true, '¡Hola Mundo!'];
+//FIC: llamado de las 2 funciones y sus respectivas promesas al mismo tiempo.
+Promise.all(arregloVarios)
+.then(respuestas =>{
+    console.log('Respuestas:', respuestas);
+})
+.catch(error=>{
+    console.log("Error en todas las promesas: ", error);
 });
+
